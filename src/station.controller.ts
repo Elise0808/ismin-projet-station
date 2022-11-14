@@ -1,15 +1,19 @@
-import {Body, Controller, Get, Param, Post, Put} from '@nestjs/common';
+import {Body, Controller, Get, Param, Post, Put, Query} from '@nestjs/common';
 import { StationService } from './station.service';
 import {Station} from "./Station";
 import {StationDto} from "./Station.dto";
+import {PaginatedType, PaginationService} from "./pagination.service";
 
 @Controller('stations')
 export class StationController {
-  constructor(private readonly stationService: StationService) {}
+  constructor(private readonly stationService: StationService, private readonly paginationService: PaginationService) {}
 
   @Get()
-  getAllStations( ): Station[] {
-    return this.stationService.getAllStations();
+  getAllStations(
+      @Query('page') page: string,
+      @Query('size') size: string,
+  ): Station[] | PaginatedType<Station>{
+    return this.paginationService.paginatedData(this.stationService.getAllStations(), page, size);
   }
 
   @Get('/:id')
