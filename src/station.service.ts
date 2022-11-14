@@ -28,4 +28,12 @@ export class StationService implements OnModuleInit {
     );
   }
 
+  getStationInfo(id: number): Station {
+    const station = this.storedStations.find((station) => station.id === id);
+    if (!station) {
+      throw new Error(`No station with id ${id}`);
+    }
+    return station;
+  }
+
 }
