@@ -22,6 +22,16 @@ export class StationService implements OnModuleInit {
     }
   }
 
+  addStation(station: Station): void {
+    if (
+        !this.storedStations.some(
+            (storedStation) => station.id === storedStation.id,
+        )
+    ) {
+      this.storedStations.push(station);
+    }
+  }
+
   getAllStations(): Station[] {
     return this.storedStations.sort((station1, station2) =>
         station1.city.toLowerCase().localeCompare(station2.city.toLowerCase()),

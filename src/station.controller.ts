@@ -1,6 +1,7 @@
-import {Controller, Get, Param} from '@nestjs/common';
+import {Body, Controller, Get, Param, Post} from '@nestjs/common';
 import { StationService } from './station.service';
 import {Station} from "./Station";
+import {StationDto} from "./Station.dto";
 
 @Controller('stations')
 export class StationController {
@@ -14,5 +15,11 @@ export class StationController {
   @Get('/:id')
   getStationInfo(@Param('id') id : number) : Station {
     return this.stationService.getStationInfo(id);
+  }
+
+  @Post()
+  createStation(@Body() stationToCreate: StationDto): Station {
+    this.stationService.addStation(stationToCreate);
+    return this.stationService.getStationInfo(stationToCreate.id);
   }
 }
