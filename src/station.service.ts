@@ -46,6 +46,19 @@ export class StationService implements OnModuleInit {
     return station;
   }
 
+  searchStation(term: string): Station[] {
+    const escapedTerm = term.toLowerCase().trim();
+
+    return this.storedStations.filter((station) => {
+      return (
+          station.address.toLowerCase().includes(escapedTerm) ||
+          station.city.toLowerCase().includes(escapedTerm) ||
+          station.price_name.toLowerCase().includes(escapedTerm) ||
+          station.service.toLowerCase().includes(escapedTerm)
+      );
+    });
+  }
+
   setFavoriteStation(id: number, fav: boolean) {
     const index = this.storedStations.findIndex((station) => station.id === id);
     if (!index) {
