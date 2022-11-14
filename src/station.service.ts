@@ -46,4 +46,12 @@ export class StationService implements OnModuleInit {
     return station;
   }
 
+  setFavoriteStation(id: number, fav: boolean) {
+    const index = this.storedStations.findIndex((station) => station.id === id);
+    if (!index) {
+      throw new Error(`No station with id ${id}`);
+    }
+    this.storedStations[index].fav =fav;
+  }
+
 }

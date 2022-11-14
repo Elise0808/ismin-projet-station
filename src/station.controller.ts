@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Param, Post} from '@nestjs/common';
+import {Body, Controller, Get, Param, Post, Put} from '@nestjs/common';
 import { StationService } from './station.service';
 import {Station} from "./Station";
 import {StationDto} from "./Station.dto";
@@ -21,5 +21,11 @@ export class StationController {
   createStation(@Body() stationToCreate: StationDto): Station {
     this.stationService.addStation(stationToCreate);
     return this.stationService.getStationInfo(stationToCreate.id);
+  }
+
+  @Put('/:id')
+  setFavoriteStation(@Param('id') id : number, @Body() elem: { fav: boolean }) : Station{
+    this.stationService.setFavoriteStation(id, elem.fav)
+    return this.stationService.getStationInfo(id);
   }
 }
