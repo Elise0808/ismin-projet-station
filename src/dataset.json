@@ -1,0 +1,28 @@
+[
+    {
+        "id" : "1",
+        "address" : "12 rue Clémenceau",
+        "city" : "Aix en Provence",
+        "price_update" : "21 Octobre 2022 10:31 AM",
+        "price_name" : "E10",
+        "price_val" : "1.67 €",
+        "service" : "Toilettes",
+        "automate24" : "Oui",
+        "pc" : "13100",
+        "lat" : "-1.000",
+        "long" : "43.000"
+    },
+    {
+        "id" : "2",
+        "address" : "2 rue du Val de Grace",
+        "city" : "Paris",
+        "price_update" : "14 Octobre 2022 10:31 AM",
+        "price_name" : "Gazole",
+        "price_val" : "0.67 €",
+        "service" : "Nissou",
+        "automate24" : "Non",
+        "pc" : "75005",
+        "lat" : "15.980",
+        "long" : "33.675"
+    }
+]
