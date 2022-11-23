@@ -9,7 +9,12 @@ export class StationController {
   constructor(private readonly stationService: StationService, private readonly paginationService: PaginationService) {}
 
   @Get()
-  getAllStations(
+  getAllStationsPaginated(): Station[] {
+    return this.stationService.getAllStations();
+  }
+
+  @Get('pagination')
+  getAllStationsPaginated(
       @Query('page') page: string,
       @Query('size') size: string,
   ): Station[] | PaginatedType<Station>{
