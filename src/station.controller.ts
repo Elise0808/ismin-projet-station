@@ -9,7 +9,7 @@ export class StationController {
   constructor(private readonly stationService: StationService, private readonly paginationService: PaginationService) {}
 
   @Get()
-  getAllStationsPaginated(): Station[] {
+  getAllStations(): Station[] {
     return this.stationService.getAllStations();
   }
 
