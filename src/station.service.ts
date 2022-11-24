@@ -12,7 +12,7 @@ export class StationService implements OnModuleInit {
   constructor(private readonly httpService: HttpService) {}
 
   async onModuleInit(): Promise<void> {
-    await Promise.all([this.loadStationsFromAPI()]);
+    await Promise.all([this.loadStationsFromFile()]);
   }
 
   private async loadStationsFromFile(): Promise<void> {
@@ -36,7 +36,6 @@ export class StationService implements OnModuleInit {
           apiResponse.forEach((elem) => {
             let id = this.getStationById(parseInt(elem.fields.id));
             if (id === -1) {
-              console.log('Adding station');
               return this.storedStations.push({
                 id: parseInt(elem.fields.id),
                 address: elem.fields.adresse,
@@ -104,7 +103,7 @@ export class StationService implements OnModuleInit {
 
   setFavoriteStation(id: number, fav: boolean) {
     const index = this.storedStations.findIndex((station) => station.id === id);
-    if (!index) {
+    if (index == null) {
       return null
     }
     this.storedStations[index].fav =fav;
