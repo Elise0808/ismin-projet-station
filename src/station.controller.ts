@@ -12,7 +12,7 @@ export class StationController {
   @Get('/pagination')
 =======
   @Get()
-  getAllStationsPaginated(): Station[] {
+  getAllStations(): Station[] {
     return this.stationService.getAllStations();
   }
 
