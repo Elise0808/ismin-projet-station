@@ -15,9 +15,9 @@ export interface ApiFields {
     prix_maj: string;
     com_arm_name: string;
     adresse: string;
-    horaires: string; //bizaaaaaare
+    horaires: string;
     ville: string;
-    rupture: string; //bizaaaaaare
+    rupture: string;
     reg_code: string;
     epci_name: string;
     com_arm_code: string;
@@ -27,23 +27,12 @@ export interface ApiFields {
     dep_code: string;
     epci_code: string;
     reg_name: string;
-    geom: number[]; //2
+    geom: number[];
     prix_id: string;
     id: string;
 }
 
 export interface ApiGeometry {
     type: string;
-    coordinates: number[]; //2
+    coordinates: number[];
 }
-
-/*nhits: number;
-    parameters: ApiParameters;
-    records: ApiRecords[]; //plusieurs records, particulier
-    facet_groups: ApiFacetGroups[];*/
-/*dataset: string[]; //1 //soit tableau soit API contenant un seul élément
-    rows: number;
-    start: number;
-    facet: string[] ; //10 //soit tableau soit API contenant un seul élément
-    format: string;
-    timezone: string;*/

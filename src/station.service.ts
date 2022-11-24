@@ -12,7 +12,7 @@ export class StationService implements OnModuleInit {
   constructor(private readonly httpService: HttpService) {}
 
   async onModuleInit(): Promise<void> {
-    await Promise.all([this.loadStationsFromFile()]);
+    await Promise.all([this.loadStationsFromAPI()]);
   }
 
   private async loadStationsFromFile(): Promise<void> {
@@ -28,7 +28,7 @@ export class StationService implements OnModuleInit {
   private async loadStationsFromAPI(): Promise<void> {
     this.httpService
       .get<ApiResponse[]>(
-        'https://data.opendatasoft.com/api/records/1.0/download/?dataset=prix-carburants-fichier-quotidien-test-ods%40opendatamef&q=&format=json&refine.ville=Aix-en-Provence',
+        'https://data.opendatasoft.com/api/records/1.0/download/?dataset=prix-carburants-fichier-quotidien-test-ods%40opendatamef&q=&format=json&refine.ville=Paris',
       )
       .pipe(
         map((elem) => elem.data),
