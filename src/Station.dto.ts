@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, IsNumber, IsBoolean } from 'class-validator';
+import { IsNotEmpty, IsString, IsNumber, IsBoolean, IsArray } from "class-validator";
 
 export class StationDto {
     @IsNotEmpty()
@@ -18,16 +18,16 @@ export class StationDto {
     readonly price_update: string;
 
     @IsNotEmpty()
-    @IsString()
-    readonly price_name: string;
+    @IsArray()
+    readonly price_name: Array<string>;
 
     @IsNotEmpty()
-    @IsNumber()
-    readonly price_val: number;
+    @IsArray()
+    readonly price_val: Array<number>;
 
     @IsNotEmpty()
-    @IsString()
-    readonly service: string;
+    @IsArray()
+    readonly service: Array<string>;
 
     @IsNotEmpty()
     @IsBoolean()
@@ -47,7 +47,7 @@ export class StationDto {
 
     fav: boolean;
 
-    constructor(id: number, address: string, city: string, price_update: string, price_name: string, price_val: number, service: string, automate24: boolean, pc: number, long: number, lat: number) {
+    constructor(id: number, address: string, city: string, price_update: string, price_name: Array<string>, price_val: Array<number>, service: Array<string>, automate24: boolean, pc: number, long: number, lat: number) {
         this.id = id;
         this.address = address;
         this.city = city;

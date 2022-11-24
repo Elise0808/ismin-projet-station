@@ -3,9 +3,9 @@ export interface Station {
     address: string;
     city: string;
     price_update: string;
-    price_name: string;
-    price_val: number;
-    service: string;
+    price_name: Array<string>;
+    price_val: Array<number>;
+    service: Array<string>;
     automate24: boolean;
     pc: number;
     lat: number;

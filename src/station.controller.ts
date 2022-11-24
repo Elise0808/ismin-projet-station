@@ -8,7 +8,16 @@ import {PaginatedType, PaginationService} from "./pagination.service";
 export class StationController {
   constructor(private readonly stationService: StationService, private readonly paginationService: PaginationService) {}
 
+<<<<<<< HEAD
   @Get('/pagination')
+=======
+  @Get()
+  getAllStationsPaginated(): Station[] {
+    return this.stationService.getAllStations();
+  }
+
+  @Get('pagination')
+>>>>>>> 999adf3522e3c93e9a6fcfc9826491405cb17820
   getAllStationsPaginated(
       @Query('page') page: string,
       @Query('size') size: string,
