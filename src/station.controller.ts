@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Param, Post, Put, Query} from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query } from "@nestjs/common";
 import { StationService } from './station.service';
 import {Station} from "./Station";
 import {StationDto} from "./Station.dto";
@@ -10,6 +10,7 @@ export class StationController {
 
   @Get()
   getAllStations(): Station[] {
+    console.log("hihi");
     return this.stationService.getAllStations();
   }
 
@@ -22,8 +23,8 @@ export class StationController {
   }
 
   @Get('/:id')
-  getStationInfo(@Param('id') id : number) : Station {
-    return this.stationService.getStationInfo(id);
+  getStationInfo(@Param('id') id : string) : Station {
+    return this.stationService.getStationInfo(parseInt(id));
   }
 
   @Post()
@@ -38,8 +39,13 @@ export class StationController {
   }
 
   @Put('/:id')
-  setFavoriteStation(@Param('id') id : number, @Body() elem: { fav: boolean }) : Station{
-    this.stationService.setFavoriteStation(id, elem.fav)
-    return this.stationService.getStationInfo(id);
+  setFavoriteStation(@Param('id') id : string, @Body() elem: { fav: boolean }) : Station{
+    this.stationService.setFavoriteStation(parseInt(id), elem.fav)
+    return this.stationService.getStationInfo(parseInt(id));
+  }
+
+  @Delete('/:id')
+  deleteStation(@Param('id') id : string) : Station{
+    return this.stationService.deleteStation(parseInt(id));
   }
 }

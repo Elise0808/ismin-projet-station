@@ -28,8 +28,8 @@ export class StationService implements OnModuleInit {
   private async loadStationsFromAPI(): Promise<void> {
     this.httpService
       .get<ApiResponse[]>(
-        'https://data.opendatasoft.com/api/records/1.0/download/?dataset=prix-carburants-fichier-quotidien-test-ods%40opendatamef&q=&format=json&refine.ville=Paris',
-      )
+        /*'https://data.opendatasoft.com/api/records/1.0/download/?dataset=prix-carburants-fichier-quotidien-test-ods%40opendatamef&q=&format=json&refine.ville=Paris*/        'https://data.economie.gouv.fr/api/records/1.0/download/?dataset=prix-carburants-fichier-instantane-test-ods-copie%40opendatamef&q=&format=json&refine.ville=Paris'
+        )
       .pipe(
         map((elem) => elem.data),
         tap((apiResponse) => {
@@ -40,7 +40,7 @@ export class StationService implements OnModuleInit {
                 id: parseInt(elem.fields.id),
                 address: elem.fields.adresse,
                 city: elem.fields.ville,
-                price_update: elem.fields.prix_maj,
+                price_update: [elem.fields.prix_maj],
                 price_name: [elem.fields.prix_nom],
                 price_val: [elem.fields.prix_valeur],
                 service: elem.fields.services_service?.split("//"),
@@ -52,6 +52,7 @@ export class StationService implements OnModuleInit {
               });
             }
             else {
+              this.storedStations[id].price_update.push(elem.fields.prix_maj);
               this.storedStations[id].price_name.push(elem.fields.prix_nom);
               this.storedStations[id].price_val.push(elem.fields.prix_valeur);
             }
@@ -84,7 +85,7 @@ export class StationService implements OnModuleInit {
 
   getStationInfo(id: number): Station {
     const station = this.storedStations.find((station) => station.id === id);
-    if (!station) {
+    if (station == null) {
       return null;
     }
     return station;
@@ -107,6 +108,14 @@ export class StationService implements OnModuleInit {
       return null
     }
     this.storedStations[index].fav =fav;
+  }
+
+  deleteStation(id: number) {
+    const index = this.storedStations.findIndex((station) => station.id === id);
+    if (index == null) {
+      return null
+    }
+    this.storedStations.splice(index, 1);
   }
 
 }

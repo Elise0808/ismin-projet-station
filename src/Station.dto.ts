@@ -14,8 +14,8 @@ export class StationDto {
     readonly city: string;
 
     @IsNotEmpty()
-    @IsString()
-    readonly price_update: string;
+    @IsArray()
+    readonly price_update: Array<string>;
 
     @IsNotEmpty()
     @IsArray()
@@ -47,7 +47,7 @@ export class StationDto {
 
     fav: boolean;
 
-    constructor(id: number, address: string, city: string, price_update: string, price_name: Array<string>, price_val: Array<number>, service: Array<string>, automate24: boolean, pc: number, long: number, lat: number) {
+    constructor(id: number, address: string, city: string, price_update: Array<string>, price_name: Array<string>, price_val: Array<number>, service: Array<string>, automate24: boolean, pc: number, long: number, lat: number) {
         this.id = id;
         this.address = address;
         this.city = city;
