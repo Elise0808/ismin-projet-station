@@ -10,7 +10,6 @@ export class StationController {
 
   @Get()
   getAllStations(): Station[] {
-    console.log("hihi");
     return this.stationService.getAllStations();
   }
 

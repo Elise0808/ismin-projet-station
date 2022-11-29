@@ -14,8 +14,16 @@ export class StationDto {
     readonly city: string;
 
     @IsNotEmpty()
+    @IsString()
+    readonly brand: string;
+
+    @IsNotEmpty()
+    @IsString()
+    readonly update: string;
+
+    @IsNotEmpty()
     @IsArray()
-    readonly price_update: Array<string>;
+    readonly shortage: Array<string>;
 
     @IsNotEmpty()
     @IsArray()
@@ -28,10 +36,6 @@ export class StationDto {
     @IsNotEmpty()
     @IsArray()
     readonly service: Array<string>;
-
-    @IsNotEmpty()
-    @IsBoolean()
-    readonly automate24: boolean;
 
     @IsNotEmpty()
     @IsNumber()
@@ -47,15 +51,14 @@ export class StationDto {
 
     fav: boolean;
 
-    constructor(id: number, address: string, city: string, price_update: Array<string>, price_name: Array<string>, price_val: Array<number>, service: Array<string>, automate24: boolean, pc: number, long: number, lat: number) {
+    constructor(id: number, address: string, city: string, update: string, shortage: Array<string>, price_name: Array<string>, price_val: Array<number>, service: Array<string>, pc: number, long: number, lat: number) {
         this.id = id;
         this.address = address;
         this.city = city;
-        this.price_update = price_update;
+        this.update = update;
         this.price_name = price_name;
         this.price_val = price_val;
         this.service = service;
-        this.automate24 = automate24;
         this.pc = pc;
         this.long = long;
         this.lat = lat;

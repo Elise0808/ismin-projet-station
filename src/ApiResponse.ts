@@ -6,30 +6,24 @@ export interface ApiResponse {
 }
 
 export interface ApiFields {
-    prix_valeur: number;
-    rupture_nom: string;
+    geo_point: number[];
+    city: string;
+    timetable: string;
+    services: string;
+    brand: string;
     pop: string;
-    dep_name: string;
-    services_service: string;
-    rupture_debut: string;
-    prix_maj: string;
-    com_arm_name: string;
-    adresse: string;
-    horaires: string;
-    ville: string;
-    rupture: string;
-    reg_code: string;
-    epci_name: string;
-    com_arm_code: string;
-    prix_nom: string;
+    shortage: string;
     cp: string;
-    horaires_automate_24_24: boolean;
-    dep_code: string;
-    epci_code: string;
-    reg_name: string;
-    geom: number[];
-    prix_id: string;
     id: string;
+    fuel: string;
+    address: string;
+    price_sp95: number;
+    price_sp98: number;
+    price_gazole: number;
+    price_e10: number;
+    price_e85: number;
+    price_gplc: number;
+    record_timestamp : string;
 }
 
 export interface ApiGeometry {

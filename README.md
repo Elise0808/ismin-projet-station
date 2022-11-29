@@ -1,38 +1,15 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+  <img src="https://www.me-mines-saint-etienne.org/wp-content/uploads/2017/11/logo-ecole-des-mines-saint-etienne.png"/></a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
+## 🚀 Installation
 
 ```bash
 $ npm install
 ```
 
-## Running the app
+
+## ▶️ Exécuter l'application (sans guillotine)
 
 ```bash
 # development
@@ -45,29 +22,55 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+## 📖 Lire les données avec Postman
 
-```bash
-# unit tests
-$ npm run test
+- 👩‍🚀 Lancer Postman
+- 📑 Importer le fichier `Station.postman_collection.json` dans Postman
+-  🌳 Ouvrir l'onglet `Environnement` et choisir l'url de provenance des données
+    - `url local` : locale
+    - `url` : API déployée
+- Lancer une requête préenregistrée
+- Croiser les doigts 🤞
 
-# e2e tests
-$ npm run test:e2e
 
-# test coverage
-$ npm run test:cov
-```
+## ✍ Description
 
-## Support
+#### Voici notre réutilisation d'une [base de données](https://data.economie.gouv.fr/api/records/1.0/download/?dataset=prix-carburants-fichier-instantane-test-ods-copie%40opendatamef&q=&format=json&refine.ville=Paris) contenant les stations essences dans Paris intra-muros
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+###### 📊 Données disponibles
+Parmi les informations disponibles dans la base de données, nous avons retenu les suivantes : 
+- `id` l'identifiant de la station,
+- `address` son adresse,
+- `city` la ville,
+- `pc` le code postal,
+- les différents types de carbuants avec :
+  - `price_name` son nom,
+  - `price_val` son prix, 
+  - `price_update` la date de la dernière actualisation,
+- `automate` la présence d’un automate 24h/24h,
+- `services` les services disponibles dans la station,
+- ses coordonnées :
+  - `lat` la latitude,
+  - `long` la longitude.
+  
+Nous avons par ailleurs ajouté un attribut : 
+- `fav` le statut favori (oui/non)
 
-## Stay in touch
+###### 📈 Fonctionnalités 
+- GET 
+  - `getAllStations` affiche toutes les stations
+  - `getAllStationsPaginated` affiche toutes les stations en version paginée
+  - `getStationInfo` affiche les informations à propos d'une station
+- POST 
+  - `createStation` crée une station
+  - `searchStation` cherche une station
+- PUT 
+  - `setFavoriteStation` met une station en favori
+- DELETE 
+  - `deleteStation` supprime une station
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+# Auteurs
 
-## License
+👨‍🦰 Niels POTIE (niels.potie@etu.emse.fr)
 
-Nest is [MIT licensed](LICENSE).
+👩 Elise VERDIER (elise.verdier@etu.emse.fr)

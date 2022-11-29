@@ -28,34 +28,28 @@ export class StationService implements OnModuleInit {
   private async loadStationsFromAPI(): Promise<void> {
     this.httpService
       .get<ApiResponse[]>(
-        /*'https://data.opendatasoft.com/api/records/1.0/download/?dataset=prix-carburants-fichier-quotidien-test-ods%40opendatamef&q=&format=json&refine.ville=Paris*/        'https://data.economie.gouv.fr/api/records/1.0/download/?dataset=prix-carburants-fichier-instantane-test-ods-copie%40opendatamef&q=&format=json&refine.ville=Paris'
+         'https://data.iledefrance.fr/api/records/1.0/download/?dataset=prix-des-carburants-j-7&q=&format=json'
         )
       .pipe(
         map((elem) => elem.data),
         tap((apiResponse) => {
           apiResponse.forEach((elem) => {
             let id = this.getStationById(parseInt(elem.fields.id));
-            if (id === -1) {
               return this.storedStations.push({
                 id: parseInt(elem.fields.id),
-                address: elem.fields.adresse,
-                city: elem.fields.ville,
-                price_update: [elem.fields.prix_maj],
-                price_name: [elem.fields.prix_nom],
-                price_val: [elem.fields.prix_valeur],
-                service: elem.fields.services_service?.split("//"),
-                automate24: elem.fields.horaires_automate_24_24,
+                address: elem.fields.address,
+                city: elem.fields.city,
+                brand: elem.fields.brand,
+                update: elem.fields.record_timestamp,
+                shortage: elem.fields.shortage?.split('/'),
+                price_name: elem.fields.fuel?.split('/'),
+                price_val: [elem.fields.price_sp95, elem.fields.price_sp98, elem.fields.price_gazole, elem.fields.price_e10, elem.fields.price_e85, elem.fields.price_gplc],
+                service: elem.fields.services?.split("/"),
                 pc: parseInt(elem.fields.cp),
-                lat: elem.fields.geom[0],
-                long: elem.fields.geom[1],
+                lat: elem.fields.geo_point[0],
+                long: elem.fields.geo_point[1],
                 fav: false,
               });
-            }
-            else {
-              this.storedStations[id].price_update.push(elem.fields.prix_maj);
-              this.storedStations[id].price_name.push(elem.fields.prix_nom);
-              this.storedStations[id].price_val.push(elem.fields.prix_valeur);
-            }
           });
         }),
       )
@@ -97,7 +91,8 @@ export class StationService implements OnModuleInit {
     return this.storedStations.filter((station) => {
       return (
         station.address.toLowerCase().includes(escapedTerm) ||
-        station.city.toLowerCase().includes(escapedTerm)
+        station.city.toLowerCase().includes(escapedTerm) ||
+        station.price_name.some((name) => name?.toLowerCase().includes(escapedTerm))
       );
     });
   }
