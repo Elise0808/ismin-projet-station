@@ -14,6 +14,10 @@ export class StationDto {
     readonly city: string;
 
     @IsNotEmpty()
+    @IsNumber()
+    readonly pc: number;
+
+    @IsNotEmpty()
     @IsString()
     readonly brand: string;
 
@@ -38,8 +42,8 @@ export class StationDto {
     readonly service: Array<string>;
 
     @IsNotEmpty()
-    @IsNumber()
-    readonly pc: number;
+    @IsString()
+    readonly automate24_24: string;
 
     @IsNotEmpty()
     @IsNumber()
@@ -51,15 +55,16 @@ export class StationDto {
 
     fav: boolean;
 
-    constructor(id: number, address: string, city: string, update: string, shortage: Array<string>, price_name: Array<string>, price_val: Array<number>, service: Array<string>, pc: number, long: number, lat: number) {
+    constructor(id: number, address: string, city: string, pc: number, update: string, shortage: Array<string>, price_name: Array<string>, price_val: Array<number>, service: Array<string>, automate24_24: string, long: number, lat: number) {
         this.id = id;
         this.address = address;
         this.city = city;
+        this.pc = pc;
         this.update = update;
         this.price_name = price_name;
         this.price_val = price_val;
         this.service = service;
-        this.pc = pc;
+        this.automate24_24 = automate24_24;
         this.long = long;
         this.lat = lat;
         this.fav = false;

@@ -3,11 +3,14 @@ export interface ApiResponse {
     recordid: string;
     fields: ApiFields;
     geometry: ApiGeometry;
+    record_timestamp: string;
 }
 
 export interface ApiFields {
     geo_point: number[];
     city: string;
+    automate24_24: string;
+    name: string;
     timetable: string;
     services: string;
     brand: string;
@@ -23,10 +26,11 @@ export interface ApiFields {
     price_e10: number;
     price_e85: number;
     price_gplc: number;
-    record_timestamp : string;
+    update : string;
 }
 
 export interface ApiGeometry {
     type: string;
     coordinates: number[];
+
 }

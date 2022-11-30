@@ -34,18 +34,18 @@ export class StationService implements OnModuleInit {
         map((elem) => elem.data),
         tap((apiResponse) => {
           apiResponse.forEach((elem) => {
-            let id = this.getStationById(parseInt(elem.fields.id));
               return this.storedStations.push({
                 id: parseInt(elem.fields.id),
                 address: elem.fields.address,
                 city: elem.fields.city,
+                pc: parseInt(elem.fields.cp),
                 brand: elem.fields.brand,
-                update: elem.fields.record_timestamp,
+                update: elem.fields.update,
                 shortage: elem.fields.shortage?.split('/'),
                 price_name: elem.fields.fuel?.split('/'),
-                price_val: [elem.fields.price_sp95, elem.fields.price_sp98, elem.fields.price_gazole, elem.fields.price_e10, elem.fields.price_e85, elem.fields.price_gplc],
+                price_val: [this.setPrice(elem.fields.price_sp95), this.setPrice(elem.fields.price_sp98), this.setPrice(elem.fields.price_gazole), this.setPrice(elem.fields.price_e10), this.setPrice(elem.fields.price_e85), this.setPrice(elem.fields.price_gplc)],
                 service: elem.fields.services?.split("/"),
-                pc: parseInt(elem.fields.cp),
+                automate24_24: elem.fields.automate24_24,
                 lat: elem.fields.geo_point[0],
                 long: elem.fields.geo_point[1],
                 fav: false,
@@ -73,7 +73,9 @@ export class StationService implements OnModuleInit {
 
   getAllStations(): Station[] {
     return this.storedStations.sort((station1, station2) =>
-      station1.city.toLowerCase().localeCompare(station2.city.toLowerCase()),
+      station1.address.toLowerCase().localeCompare(station2.address.toLowerCase()) &&
+      station1.city.toLowerCase().localeCompare(station2.city.toLowerCase())
+      ,
     );
   }
 
@@ -92,7 +94,9 @@ export class StationService implements OnModuleInit {
       return (
         station.address.toLowerCase().includes(escapedTerm) ||
         station.city.toLowerCase().includes(escapedTerm) ||
-        station.price_name.some((name) => name?.toLowerCase().includes(escapedTerm))
+        station.price_name.some((name) => name?.toLowerCase().includes(escapedTerm)) ||
+        station.brand.toLowerCase().includes(escapedTerm) ||
+        station.pc.toString().toLowerCase().includes(escapedTerm)
       );
     });
   }
@@ -111,6 +115,15 @@ export class StationService implements OnModuleInit {
       return null
     }
     this.storedStations.splice(index, 1);
+  }
+
+  setPrice(price : number){
+    if(Math.trunc(price*10)==0){
+      return Math.round(price*100000)/100
+    }
+    else{
+      return price
+    }
   }
 
 }

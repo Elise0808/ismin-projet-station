@@ -35,20 +35,21 @@ $ npm run start:prod
 
 ## ✍ Description
 
-#### Voici notre réutilisation d'une [base de données](https://data.economie.gouv.fr/api/records/1.0/download/?dataset=prix-carburants-fichier-instantane-test-ods-copie%40opendatamef&q=&format=json&refine.ville=Paris) contenant les stations essences dans Paris intra-muros
+#### Voici notre réutilisation d'une [base de données](https://data.economie.gouv.fr/api/records/1.0/download/?dataset=prix-carburants-fichier-instantane-test-ods-copie%40opendatamef&q=&format=json&refine.ville=Paris) contenant les stations essences en Île de France
 
 ###### 📊 Données disponibles
 Parmi les informations disponibles dans la base de données, nous avons retenu les suivantes : 
 - `id` l'identifiant de la station,
 - `address` son adresse,
 - `city` la ville,
+- `brand` la marque de la station,
 - `pc` le code postal,
 - les différents types de carbuants avec :
   - `price_name` son nom,
   - `price_val` son prix, 
-  - `price_update` la date de la dernière actualisation,
-- `automate` la présence d’un automate 24h/24h,
-- `services` les services disponibles dans la station,
+  - `update` la date de la dernière actualisation,
+  - `shortage` les carburants subissant une pénurie,
+- `service` les services disponibles dans la station,
 - ses coordonnées :
   - `lat` la latitude,
   - `long` la longitude.
