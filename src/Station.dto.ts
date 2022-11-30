@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsString, IsNumber, IsBoolean, IsArray } from "class-validator";
 
-export class StationDto {
+export class StationDto { //On vérifie que tous les éléments sont non nuls et du bon type
     @IsNotEmpty()
     @IsNumber()
     readonly id: number;

@@ -1,0 +1,200 @@
+{
+	"info": {
+		"_postman_id": "63f60286-a72c-434e-bb87-5608ef3704c1",
+		"name": "Station Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all stations",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url local}}/stations",
+					"host": [
+						"{{url local}}"
+					],
+					"path": [
+						"stations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all stations with pagination",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{url local}/stations/pagination?size=2&page=0",
+					"host": [
+						"{{url local}"
+					],
+					"path": [
+						"stations",
+						"pagination"
+					],
+					"query": [
+						{
+							"key": "size",
+							"value": "2"
+						},
+						{
+							"key": "page",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get station's info",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{url local}}/stations/:id",
+					"host": [
+						"{{url local}}"
+					],
+					"path": [
+						"stations",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "78660003"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set favorite",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fav\" : \"false\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url local}}/stations/:id",
+					"host": [
+						"{{url local}}"
+					],
+					"path": [
+						"stations",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "78660003"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create station",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\" : 3,\r\n    \"address\" : \"879 route de Mimet\",\r\n    \"city\" : \"Gardanne\",\r\n    \"price_update\" : \"24 Octobre 2022 15:51\",\r\n    \"price_name\" : \"Gazole\",\r\n    \"price_val\" : 0.99,\r\n    \"service\" : \"Toilette\",\r\n    \"automate24\" : \"Non\",\r\n    \"pc\" : 13120,\r\n    \"lat\" : 5.480,\r\n    \"long\" : 43.446    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url local}}/stations",
+					"host": [
+						"{{url local}}"
+					],
+					"path": [
+						"stations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search station",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"term\" : \"Ga\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url local}}/stations/search",
+					"host": [
+						"{{url local}}"
+					],
+					"path": [
+						"stations",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete station",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url local}}/stations/:id",
+					"host": [
+						"{{url local}}"
+					],
+					"path": [
+						"stations",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
